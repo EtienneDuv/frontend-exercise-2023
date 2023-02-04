@@ -6,7 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "echo \"no test yet\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -18,11 +19,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.0.0",
+    "bootstrap": "^5.2.3",
+    "eslint": "^8.33.0",
+    "react-bootstrap": "^2.7.0"
   },
   "browserslist": {
     "production": [
@@ -35,10 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "^3.0.0",
-    "bootstrap": "^5.2.3",
-    "react-bootstrap": "^2.7.0"
   }
 }
