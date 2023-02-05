@@ -1,19 +1,18 @@
-import React from 'react';
 import {
   Navbar,
   Nav,
   Button,
 } from 'react-bootstrap';
-import {logo} from '../svg';
+import {logo} from '../assets';
 
 export default () => (
   <Navbar>
-    <Navbar.Brand href="#home" className=''>
+    <Navbar.Brand href="/home" className=''>
       <img
         alt="Appliting"
         src={logo.toString()}
         width="50"
-        className="me-1 bg-light roundedCornerMax"
+        className="me-1 bg-light"
       />
       <span> React Bootstrap </span>
     </Navbar.Brand>

@@ -1,5 +1,7 @@
 .vscode
 _*
+dist
+build
 
 # Logs
 logs
@@ -27,5 +29,3 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-
-build
