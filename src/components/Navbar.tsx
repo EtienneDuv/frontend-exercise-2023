@@ -7,18 +7,27 @@ import {
 import {logo} from '../assets';
 
 export default () => {
-  const [theme, setTheme] = useState('light');  //todo get default theme from OS/cookie
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  if (theme=='dark') {
+    document.getElementsByTagName('html')[0].classList.add('dark');
+  }
   const toggleTheme = () => {
     document.getElementsByTagName('html')[0].classList.toggle('dark');
-    if (theme=='light') return setTheme('dark');
-    if (theme=='dark') return setTheme('light');
+    if (theme=='light') {
+      setTheme('dark');
+      return localStorage.setItem('theme', 'dark');
+    }
+    if (theme=='dark') {
+      setTheme('light');
+      return localStorage.setItem('theme', 'light');
+    }
   };
 
   return (
     <Navbar>
       <Navbar.Brand href="#" className=''>
-        <img alt="Appliting" src={logo.toString()} width="50" className="me-1" />
-        <span> React Bootstrap  </span>
+        <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
+        <span>React Bootstrap</span>
       </Navbar.Brand>
 
       <Nav className='me-auto'>
