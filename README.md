@@ -6,6 +6,9 @@
 # TODO
 - ✔ setup react
 - ✔ basic interface
+- ✔ get codegen types from API
 - query backend
-- get codegen types from API
-- make interface
+  - login
+  - store token
+  - implement other queries
+- complete react interface
