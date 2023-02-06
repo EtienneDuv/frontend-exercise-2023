@@ -1,37 +1,36 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   Navbar,
   Nav,
   Button,
 } from 'react-bootstrap';
-import {logo} from '../assets';
 import {NavLink} from 'react-router-dom';
+import {logo} from '../assets';
 
 export default () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-  if (theme=='dark') {
-    document.getElementsByTagName('html')[0].classList.add('dark');
-  }
+
+  const rootHtml = document.getElementsByTagName('html')[0];
+  rootHtml.classList.add(theme);
+
   const toggleTheme = () => {
-    document.getElementsByTagName('html')[0].classList.toggle('dark');
-    if (theme=='light') {
-      setTheme('dark');
-      return localStorage.setItem('theme', 'dark');
-    }
-    if (theme=='dark') {
-      setTheme('light');
-      return localStorage.setItem('theme', 'light');
-    }
+    rootHtml.classList.toggle('light');
+    rootHtml.classList.toggle('dark');
+    if (theme=='light') return setTheme('dark');
+    if (theme=='dark') return setTheme('light');
   };
+
+  // Save in local storage when state is updated
+  useEffect(() => localStorage.setItem('theme', theme), [theme]);
 
   return (
     <Navbar>
-      <Navbar.Brand href="/" className=''>
-        <NavLink to='/' className="navbar-brand">
+      <NavLink to='/' className="navbar-brand">
+        <Navbar.Brand>
           <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
           <span> React Bootstrap </span>
-        </NavLink>
-      </Navbar.Brand>
+        </Navbar.Brand>
+      </NavLink>
 
       <Nav className='me-auto'>
         <NavLink to="/articles" className='nav-link'> Recent articles </NavLink>

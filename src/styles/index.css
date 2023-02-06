@@ -1,3 +1,7 @@
 .dark:not(img) {
-  filter: invert(100%) 
+  filter: invert(100%);
+  transition: 0.4s;
+}
+.light:not(img) {
+  transition: 0.4s;
 }
