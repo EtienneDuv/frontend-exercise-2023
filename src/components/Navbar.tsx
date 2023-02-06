@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react';
 import {
   Navbar,
   Nav,
@@ -6,23 +5,9 @@ import {
 } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import {logo} from '../assets';
+import {default as ThemeToggler} from './ThemeToggler';
 
 export default () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
-  const rootHtml = document.getElementsByTagName('html')[0];
-  rootHtml.classList.add(theme);
-
-  const toggleTheme = () => {
-    rootHtml.classList.toggle('light');
-    rootHtml.classList.toggle('dark');
-    if (theme=='light') return setTheme('dark');
-    if (theme=='dark') return setTheme('light');
-  };
-
-  // Save in local storage when state is updated
-  useEffect(() => localStorage.setItem('theme', theme), [theme]);
-
   return (
     <Navbar>
       <NavLink to='/' className="navbar-brand">
@@ -37,13 +22,7 @@ export default () => {
         <NavLink to="/about" className='nav-link'> About </NavLink>
       </Nav>
 
-      <Button onClick={toggleTheme} className="me-1">
-        <i className={[
-          'icon',
-          'large',
-          theme=='dark' ? 'bi-moon' : 'bi-sun'
-        ].join(' ')}></i>
-      </Button>
+      <ThemeToggler />
       <NavLink to='/login'>
         <Button>
           Login
