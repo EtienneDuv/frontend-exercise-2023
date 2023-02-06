@@ -5,6 +5,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import {logo} from '../assets';
+import {NavLink} from 'react-router-dom';
 
 export default () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -25,25 +26,31 @@ export default () => {
 
   return (
     <Navbar>
-      <Navbar.Brand href="#" className=''>
-        <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
-        <span>React Bootstrap</span>
+      <Navbar.Brand href="/" className=''>
+        <NavLink to='/' className="navbar-brand">
+          <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
+          <span> React Bootstrap </span>
+        </NavLink>
       </Navbar.Brand>
 
       <Nav className='me-auto'>
-        <Nav.Link href="#articles">Recent articles</Nav.Link>
-        <Nav.Link href="#about">About</Nav.Link>
+        <NavLink to="/articles" className='nav-link'> Recent articles </NavLink>
+        <NavLink to="/about" className='nav-link'> About </NavLink>
       </Nav>
 
       <Button onClick={toggleTheme} className="me-1">
-        <i className={['icon', 'large', 'rounded',
+        <i className={[
+          'icon',
+          'large',
           theme=='dark' ? 'bi-moon' : 'bi-sun'
         ].join(' ')}></i>
       </Button>
-      <Button href="#login">
-      Login
-        <i className='icon bi-arrow-right ms-1'></i>
-      </Button>
+      <NavLink to='/login'>
+        <Button>
+          Login
+          <i className='icon bi-arrow-right ms-1'></i>
+        </Button>
+      </NavLink>
     </Navbar>
   );
 };

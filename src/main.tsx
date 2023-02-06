@@ -1,9 +1,9 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Router from './router';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom';
 
 import './styles/index.css';
 // Bootstrap CSS
@@ -15,9 +15,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Router />
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
