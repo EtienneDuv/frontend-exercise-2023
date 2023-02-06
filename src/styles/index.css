@@ -1,0 +1,3 @@
+.dark:not(img) {
+  filter: invert(100%) 
+}
