@@ -1,5 +1,5 @@
 import {MutationLoginArgs} from '../../@types/gql';
-import {fetchGql} from './utils';
+import {fetchGql} from '../utils';
 
 export const login = (data: MutationLoginArgs) => fetchGql({
   body: `mutation {

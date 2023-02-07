@@ -1,13 +1,18 @@
 import {useState} from 'react';
 import {Button, Form, Row, Col, Container, Alert} from 'react-bootstrap';
 import {useMutation, UseMutationOptions} from 'react-query';
-import {gql} from '../services';
 import {errorObject} from '../@types/interfaces';
+import {useNavigate, Navigate} from 'react-router-dom';
+import {gql} from '../services';
+import {getJwt} from '../services/utils';
 
 export default () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<string[]>([]);
+  const navigate = useNavigate();
+
+  if (getJwt()) return <Navigate to="/" />;
 
   const loginMutation = useMutation({
     mutationKey: 'login',
@@ -23,8 +28,8 @@ export default () => {
       if (data) {
         const jwt = data?.login?.token;
         if (jwt) {
-          console.log(jwt);
-          // TODO SAVE TOKEN
+          document.cookie = `jwt=${jwt};max-age=3600;SameSite=None;secure`;
+          return navigate('/');
         }
       }
     }
@@ -61,7 +66,12 @@ export default () => {
 
         <Form.Group as={Row}>
           <Col sm={{offset: 5}}>
-            <Button type="submit">Sign in</Button>
+            <Button
+              type="submit"
+              disabled={username=='' || password==''}
+            >
+            Sign in
+            </Button>
           </Col>
         </Form.Group>
       </Form>

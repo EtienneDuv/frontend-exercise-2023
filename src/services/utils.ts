@@ -9,3 +9,10 @@ export const fetchGql = ({body='', headers={}}): Promise<unknown> => {
   })
     .then((res) => res.json());
 };
+
+export const getJwt = () => {
+  return document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('jwt='))
+    ?.split('=')[1];
+};
