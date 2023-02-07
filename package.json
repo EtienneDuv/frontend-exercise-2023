@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite --port 4000",
+    "start:dev": "vite --port 4000",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "echo \"no test yet\"",

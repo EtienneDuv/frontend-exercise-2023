@@ -1,4 +1,5 @@
 import * as userQueries from './user';
-export default {
+
+export const gql = {
   ...userQueries
 };
