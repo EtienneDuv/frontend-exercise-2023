@@ -8,7 +8,7 @@
 - ✔ basic interface
 - ✔ get codegen types from API
 - query backend
-  - login
-  - store token
+  - ✔ login
+  - ✔ store token
   - implement other queries
 - complete react interface

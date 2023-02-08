@@ -5,8 +5,9 @@ import {errorObject} from '../@types/interfaces';
 import {useNavigate, Navigate} from 'react-router-dom';
 import {gql} from '../services';
 import {getJwt} from '../services/utils';
+import {SetJwtStateProps} from '../@types/interfaces';
 
-export default () => {
+export default ({setJwtState}: SetJwtStateProps) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<string[]>([]);
@@ -29,6 +30,7 @@ export default () => {
         const jwt = data?.login?.token;
         if (jwt) {
           document.cookie = `jwt=${jwt};max-age=3600;SameSite=None;secure`;
+          setJwtState(jwt);
           return navigate('/');
         }
       }

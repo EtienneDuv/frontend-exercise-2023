@@ -6,8 +6,36 @@ import {
 import {NavLink} from 'react-router-dom';
 import {logo} from '../assets';
 import {default as ThemeToggler} from './ThemeToggler';
+import {SetJwtStateProps} from '../@types/interfaces';
+import {JwtContext} from '../router';
 
-export default () => {
+export default ({setJwtState}: SetJwtStateProps) => {
+  const removeJwtCookie = () => {
+    setJwtState(null);
+    document.cookie='jwt=;expires=0;SameSite=None;secure';
+  };
+
+  const LoginLogoutButton = ():JSX.Element => <JwtContext.Consumer>
+    {jwt => {
+      if (!jwt)
+        return (
+          <NavLink to='/login'>
+            <Button>
+              Login
+              <i className='icon bi-person ms-1'></i>
+            </Button>
+          </NavLink>
+        );
+      else
+        return (
+          <Button onClick={() => { removeJwtCookie() } }>
+            Logout
+            <i className='icon bi-box-arrow-right ms-1'></i>
+          </Button>
+        );
+    }}
+  </JwtContext.Consumer>;
+
   return (
     <Navbar>
       <NavLink to='/' className="navbar-brand">
@@ -23,12 +51,8 @@ export default () => {
       </Nav>
 
       <ThemeToggler />
-      <NavLink to='/login'>
-        <Button>
-          Login
-          <i className='icon bi-arrow-right ms-1'></i>
-        </Button>
-      </NavLink>
+
+      <LoginLogoutButton />
     </Navbar>
   );
 };
