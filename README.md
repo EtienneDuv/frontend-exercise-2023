@@ -11,4 +11,5 @@
   - ✔ login
   - ✔ store token
   - implement other queries
+  - create user
 - complete react interface

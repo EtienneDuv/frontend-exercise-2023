@@ -1,16 +1,16 @@
 import {useState} from 'react';
-import {Button, Form, Row, Col, Container, Alert} from 'react-bootstrap';
+import {Button, Form, Row, Col, Container} from 'react-bootstrap';
 import {useMutation, UseMutationOptions} from 'react-query';
-import {errorObject} from '../@types/interfaces';
 import {useNavigate, Navigate} from 'react-router-dom';
 import {gql} from '../services';
 import {getJwt} from '../services/utils';
 import {SetJwtStateProps} from '../@types/interfaces';
+import {ErrorAlerts} from '../components';
 
 export default ({setJwtState}: SetJwtStateProps) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<object[]>([]);
   const navigate = useNavigate();
 
   if (getJwt()) return <Navigate to="/" />;
@@ -20,14 +20,10 @@ export default ({setJwtState}: SetJwtStateProps) => {
     mutationFn : () => gql.login({username, password}),
     onSuccess  : ({data, errors}) => {
       if (errors) {
-        const errorMessages: string[] = Object.values(errors).map(error  => {
-          const err = error as errorObject;
-          return err.message;
-        });
-        return setErrors(errorMessages);
+        return setErrors(errors);
       }
-      if (data) {
-        const jwt = data?.login?.token;
+      if (data?.login?.token) {
+        const jwt = data.login.token;
         if (jwt) {
           document.cookie = `jwt=${jwt};max-age=3600;SameSite=None;secure`;
           setJwtState(jwt);
@@ -40,6 +36,15 @@ export default ({setJwtState}: SetJwtStateProps) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     loginMutation.mutate();
+  };
+
+  const ErrorAlertsLocal = ():JSX.Element => {
+    if (errors.length > 0) return (
+      <ErrorAlerts errors={errors}/>
+    );
+    return (
+      <></>
+    );
   };
 
   return (
@@ -78,11 +83,7 @@ export default ({setJwtState}: SetJwtStateProps) => {
         </Form.Group>
       </Form>
 
-      {errors.map((errorMessage, i) => (
-        <Alert key={i} variant="danger" className="w-50 mt-4">
-          {errorMessage}
-        </Alert>
-      ))}
+      <ErrorAlertsLocal />
     </Container>
   );
 };

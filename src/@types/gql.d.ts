@@ -18,6 +18,7 @@ export type Article = {
   __typename?: 'Article';
   /**  UUID of author  */
   authorId: Scalars['ID'];
+  commentCount: Scalars['Int'];
   comments: Array<Comment>;
   content: Scalars['String'];
   createdAt: Scalars['String'];
@@ -266,6 +267,7 @@ export type ResolversParentTypes = {
 
 export type ArticleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Article'] = ResolversParentTypes['Article']> = {
   authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  commentCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, Partial<ArticleCommentsArgs>>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

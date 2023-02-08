@@ -7,7 +7,15 @@ import {ReactQueryDevtools} from 'react-query/devtools';
 import {createContext, useState} from 'react';
 import {getJwt} from './services/utils';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime           : 10*60*1000, // 10 minutes
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 export const JwtContext = createContext<string|null>(null);
 
 export default () => {
