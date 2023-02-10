@@ -7,7 +7,7 @@ import {getJwt} from '../services/utils';
 import {SetJwtStateProps} from '../@types/interfaces';
 import {ErrorAlerts} from '../components';
 
-export default ({setJwtState}: SetJwtStateProps) => {
+export const Login = ({setJwtState}: SetJwtStateProps) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<object[]>([]);
@@ -40,10 +40,12 @@ export default ({setJwtState}: SetJwtStateProps) => {
 
   const ErrorAlertsLocal = ():JSX.Element => {
     if (errors.length > 0) return (
-      <ErrorAlerts errors={errors}/>
+      <div className="w-50 mt-4">
+        <ErrorAlerts errors={errors}/>
+      </div>
     );
     return (
-      <></>
+      <div />
     );
   };
 

@@ -5,3 +5,6 @@
 .light:not(img) {
   transition: 0.4s;
 }
+body {
+  overflow-y: scroll; /* Show vertical scrollbar */
+}

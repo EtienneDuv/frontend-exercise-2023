@@ -1,4 +1,4 @@
-export {default as Home} from './home';
-export {default as About} from './about';
-export {default as Login} from './login';
-export {default as NotFound} from './404';
+export {Home} from './home';
+export {About} from './about';
+export {Login} from './login';
+export {NotFound} from './404';

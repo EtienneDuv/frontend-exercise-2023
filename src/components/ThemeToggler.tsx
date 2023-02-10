@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 
-export default () => {
+export const ThemeToggler = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   const rootHtml = document.getElementsByTagName('html')[0];

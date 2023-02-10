@@ -1,7 +1,7 @@
 /// <reference types="vite-plugin-svgr/client" />
 
 import ReactDOM from 'react-dom/client';
-import Router from './router';
+import {Router} from './router';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 

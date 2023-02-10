@@ -1,2 +1,2 @@
-export {default as Navbar} from './Navbar';
-export {default as ErrorAlerts} from './ErrorAlerts';
+export {MyNavbar} from './Navbar';
+export {ErrorAlerts} from './ErrorAlerts';

@@ -1,4 +1,4 @@
-import {Navbar} from './components';
+import {MyNavbar} from './components';
 import Container from 'react-bootstrap/Container';
 import {Routes, Route} from 'react-router-dom';
 import {Home, About, Login, NotFound} from './pages';
@@ -18,15 +18,15 @@ const queryClient = new QueryClient({
 
 export const JwtContext = createContext<string|null>(null);
 
-export default () => {
+export const Router = () => {
   const [jwtState, setJwtState] = useState<string|null>(getJwt()||null);
 
   return (
-    <Container className='pt-5'>
+    <Container className='pt-5 w-75'>
       <Container className="p-5 mb-4 rounded-3">
         <QueryClientProvider client={queryClient}>
           <JwtContext.Provider value={jwtState}>
-            <Navbar setJwtState={setJwtState}/>
+            <MyNavbar setJwtState={setJwtState}/>
             <Routes>
               <Route index element={<Home />} />
               <Route path="/about" element={<About />} />

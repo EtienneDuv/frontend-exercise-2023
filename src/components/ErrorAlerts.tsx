@@ -5,7 +5,7 @@ interface args {
   errors: Array<object>
 }
 
-export default ({errors}: args) => {
+export const ErrorAlerts = ({errors}: args) => {
   const errors2 = errors as Array<errorObject>;
 
   const errorMessages: string[] = Object

@@ -5,11 +5,11 @@ import {
 } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import {logo} from '../assets';
-import {default as ThemeToggler} from './ThemeToggler';
+import {ThemeToggler} from './ThemeToggler';
 import {SetJwtStateProps} from '../@types/interfaces';
 import {JwtContext} from '../router';
 
-export default ({setJwtState}: SetJwtStateProps) => {
+export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
   const removeJwtCookie = () => {
     setJwtState(null);
     document.cookie='jwt=;expires=0;SameSite=None;secure';
@@ -37,7 +37,7 @@ export default ({setJwtState}: SetJwtStateProps) => {
   </JwtContext.Consumer>;
 
   return (
-    <Navbar>
+    <Navbar className='mb-3'>
       <NavLink to='/' className="navbar-brand">
         <Navbar.Brand>
           <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
