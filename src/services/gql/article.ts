@@ -10,6 +10,9 @@ export const getArticles = (data: QueryGetArticlesArgs) => fetchGql({
       title
       perex
       commentCount
+      createdAt
+      authorId
+      authorUsername
     }
   }`
 });

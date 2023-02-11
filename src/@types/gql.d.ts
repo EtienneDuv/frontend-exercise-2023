@@ -1,4 +1,4 @@
-import {GraphQLResolveInfo} from 'graphql';
+import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -18,6 +18,7 @@ export type Article = {
   __typename?: 'Article';
   /**  UUID of author  */
   authorId: Scalars['ID'];
+  authorUsername: Scalars['String'];
   commentCount: Scalars['Int'];
   comments: Array<Comment>;
   content: Scalars['String'];
@@ -267,6 +268,7 @@ export type ResolversParentTypes = {
 
 export type ArticleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Article'] = ResolversParentTypes['Article']> = {
   authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  authorUsername?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   commentCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType, Partial<ArticleCommentsArgs>>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

@@ -10,6 +10,8 @@
 - query backend
   - ✔ login
   - ✔ store token
-  - home page + article shorts + add articleCount in gql for pagination
-  - create user
+  - About page + icons
+  - Profile page
+  - Article page
+  - add articleCount in gql for pagination
 - complete react interface

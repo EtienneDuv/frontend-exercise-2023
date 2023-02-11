@@ -1,9 +1,11 @@
 import {useState} from 'react';
-import {Badge, Row, Spinner, Card, Col} from 'react-bootstrap';
+import {Badge, Row, Spinner, Card, Button} from 'react-bootstrap';
 import {useQuery, UseQueryOptions} from 'react-query';
 import {gql} from '../services';
 import {Article} from '../@types/gql';
 import {ErrorAlerts} from '../components';
+import {getDate, getDatetime} from '../services/utils';
+import {NavLink} from 'react-router-dom';
 
 export const Home = () => {
   const [articles, setArticles] = useState<object[]>([]);
@@ -29,7 +31,9 @@ export const Home = () => {
   );
 
   if (errors.length > 0) return (
-    <ErrorAlerts errors={errors} />
+    <Row>
+      <ErrorAlerts errors={errors} />
+    </Row>
   );
 
   return (
@@ -37,20 +41,32 @@ export const Home = () => {
       {articles.map((el, i) => {
         const article = el as Article;
         return (
-          <Card key={i} className="mb-4">
-            <Card.Header as="h5">{article.title}</Card.Header>
+          <Card className='mb-3' key={i}>
+            <Card.Header as="h4">
+              <Card.Title> {article.title} </Card.Title>
+              <Card.Subtitle>
+                <NavLink to={`profile/${article.authorId}`}>
+                  <Badge bg='secondary'> {article.authorUsername} </Badge>
+                </NavLink>
+                {' - '}
+                <span title={getDatetime(Number(article.createdAt))}>
+                  {getDate(Number(article.createdAt))}
+                </span>
+              </Card.Subtitle>
+            </Card.Header>
+
             <Card.Body>
-              <Row className='mb-3'>
-                <Col> {article.perex} </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Badge>
-                    {article.commentCount}
-                    <i className='icon bi-chat-left-fill ms-1'></i>
-                  </Badge>
-                </Col>
-              </Row>
+              <Card.Text> {article.perex} </Card.Text>
+              <Badge bg='secondary'>
+                {article.commentCount}
+                <i className='icon bi-chat-left-fill ms-1'></i>
+              </Badge>
+              <NavLink to={`/article/${article.id}`}>
+                <Button size="sm" className='ms-3' variant='secondary'>
+                Read more
+                  <i className='icon bi-chevron-double-right ms-1'></i>
+                </Button>
+              </NavLink>
             </Card.Body>
           </Card>
         );
