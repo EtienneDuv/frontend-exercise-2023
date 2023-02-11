@@ -53,8 +53,8 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
     <Container>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-          <Form.Label column xs={1}> Username </Form.Label>
-          <Col xs={5}>
+          <Form.Label column md={3} lg={2}> Username </Form.Label>
+          <Col md={5}>
             <Form.Control
               placeholder="Username"
               onChange={e => setUsername(e.target.value)}
@@ -63,8 +63,8 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
         </Form.Group>
 
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
-          <Form.Label column xs={1}> Password </Form.Label>
-          <Col xs={5}>
+          <Form.Label column md={3} lg={2}> Password </Form.Label>
+          <Col md={5}>
             <Form.Control
               type="password"
               placeholder="Password"

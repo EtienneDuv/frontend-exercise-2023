@@ -4,7 +4,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
-import {logo} from '../assets';
+import {applifting} from '../assets';
 import {ThemeToggler} from './ThemeToggler';
 import {SetJwtStateProps} from '../@types/interfaces';
 import {JwtContext} from '../router';
@@ -40,7 +40,7 @@ export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
     <Navbar className='mb-3'>
       <NavLink to='/' className="navbar-brand">
         <Navbar.Brand>
-          <img alt="Appliting" src={logo.toString()} width="50" className="me-2" />
+          <img alt="Appliting" src={applifting.toString()} width="50" className="me-2" />
           <span> React Bootstrap </span>
         </Navbar.Brand>
       </NavLink>

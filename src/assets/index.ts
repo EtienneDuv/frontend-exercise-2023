@@ -1,1 +1,12 @@
-export {default as logo} from './applifting.svg';
+export {default as apollo} from './apollo.svg';
+export {default as applifting} from './applifting.svg';
+export {default as codegen} from './codegen.svg';
+export {default as eslint} from './eslint.svg';
+export {default as express} from './express.svg';
+export {default as graphql} from './graphql.svg';
+export {default as jwt} from './jwt.svg';
+export {default as postgresql} from './postgresql.svg';
+export {default as react} from './react.svg';
+export {default as reactQuery} from './reactQuery.svg';
+export {default as sequelize} from './sequelize.svg';
+export {default as typescript} from './typescript.svg';

@@ -15,3 +15,4 @@
   - Article page
   - add articleCount in gql for pagination
 - complete react interface
+- Cypress
