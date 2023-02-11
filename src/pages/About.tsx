@@ -1,6 +1,6 @@
 import {Row, Col, Button} from 'react-bootstrap';
 import {
-  apollo, codegen, eslint, express, graphql, jwt,
+  apollo, codegen, eslint, express, graphql, jwt, bootstrap,
   postgresql, react, reactQuery, sequelize, typescript,
 } from '../assets';
 import {TechnoImageTooltip} from '../components';
@@ -16,6 +16,11 @@ export const About = () => {
       svg  : reactQuery,
       title: 'REACT QUERY',
       text : 'React Query is a ReactJS preconfigured data management library which gives you power and control over server-side state management, fetching, and caching of data, and error handling in a simple and declarative way without affecting the global state of your application'
+    },
+    {
+      svg  : bootstrap,
+      title: 'BOOTSTRAP',
+      text : 'Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components'
     },
   ];
   const commonTechnos = [

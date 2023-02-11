@@ -1,5 +1,6 @@
 export {default as apollo} from './apollo.svg';
 export {default as applifting} from './applifting.svg';
+export {default as bootstrap} from './bootstrap.svg';
 export {default as codegen} from './codegen.svg';
 export {default as eslint} from './eslint.svg';
 export {default as express} from './express.svg';
