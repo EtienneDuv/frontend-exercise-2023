@@ -45,7 +45,7 @@ export const Home = () => {
             <Card.Header as="h4">
               <Card.Title> {article.title} </Card.Title>
               <Card.Subtitle>
-                <NavLink to={`profile/${article.authorId}`}>
+                <NavLink to={`/profile/${article.authorId}`}>
                   <Badge bg='secondary'> {article.authorUsername} </Badge>
                 </NavLink>
                 {' - '}
