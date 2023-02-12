@@ -4,10 +4,12 @@ import {getDate, getDatetime} from '../services/utils';
 import {NavLink} from 'react-router-dom';
 
 interface Args {
-  article: Article
+  article: Article;
+  editable?: boolean;
+  readable?: boolean;
 }
 
-export const ArticleCard = ({article}: Args) => {
+export const ArticleCard = ({article, editable, readable}: Args) => {
   const AuthorSubtitle = ():JSX.Element => {
     if (article?.authorId) return (
       <>
@@ -16,6 +18,30 @@ export const ArticleCard = ({article}: Args) => {
         </NavLink>
         {' - '}
       </>
+    );
+    else return <></>;
+  };
+
+  const ReadMoreButton = ():JSX.Element => {
+    if (readable) return (
+      <NavLink to={`/article/${article.id}`}>
+        <Button size="sm" className='ms-3' variant='secondary'>
+            Read more
+          <i className='icon bi-chevron-double-right ms-1'></i>
+        </Button>
+      </NavLink>
+    );
+    else return <></>;
+  };
+
+  const EditButton = ():JSX.Element => {
+    if (editable) return (
+      <NavLink to={`/article/${article.id}/edit`}>
+        <Button size="sm" className='ms-3' variant='secondary'>
+            Edit
+          <i className='icon bi-pen ms-1'></i>
+        </Button>
+      </NavLink>
     );
     else return <></>;
   };
@@ -38,12 +64,9 @@ export const ArticleCard = ({article}: Args) => {
           {article.commentCount}
           <i className='icon bi-chat-left-fill ms-1'></i>
         </Badge>
-        <NavLink to={`/article/${article.id}`}>
-          <Button size="sm" className='ms-3' variant='secondary'>
-            Read more
-            <i className='icon bi-chevron-double-right ms-1'></i>
-          </Button>
-        </NavLink>
+
+        <EditButton/>
+        <ReadMoreButton/>
       </Card.Body>
     </Card>
   );

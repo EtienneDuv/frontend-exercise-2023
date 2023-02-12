@@ -38,7 +38,7 @@ export const Home = () => {
     <div>
       {articles.map((el, i) => {
         const article = el as Article;
-        return <ArticleCard article={article} key={i}/>;
+        return <ArticleCard article={article} key={i} readable />;
       })}
     </div>
   );

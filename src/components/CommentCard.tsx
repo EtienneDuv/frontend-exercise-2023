@@ -5,10 +5,11 @@ import {NavLink} from 'react-router-dom';
 import {defaultUserImage} from '../assets';
 
 interface Args {
-  comment: Comment
+  comment: Comment;
+  articleButton?: boolean;
 }
 
-export const CommentCard = ({comment}: Args) => {
+export const CommentCard = ({comment, articleButton}: Args) => {
   const ChildComments = ():JSX.Element => {
     if (comment?.children) return (
       <>
@@ -16,7 +17,11 @@ export const CommentCard = ({comment}: Args) => {
           const childComment = el as Comment;
           return (
             <Row className='mt-3' key={i}>
-              <CommentCard comment={childComment} key={i} />
+              <CommentCard
+                comment={childComment}
+                key={i}
+                articleButton={articleButton}
+              />
             </Row>
           );
         })}
@@ -25,37 +30,38 @@ export const CommentCard = ({comment}: Args) => {
     else return <></>;
   };
 
+  const GoToArticleButton = ():JSX.Element => {
+    if (articleButton) return (
+      <NavLink to={`/article/${comment.articleId}`}>
+        <Button size="sm" className='ms-3' variant='secondary'>
+          Article
+          <i className='icon bi-chevron-double-right ms-1'></i>
+        </Button>
+      </NavLink>
+    );
+    else return <></>;
+  };
+
   return (
-    <div>
-      <Image
-        src={defaultUserImage.toString()}
-        width={50}
-        className="p-1"
-      />
-      {comment.authorId}  {/* TODO authorUsername*/}
-      <span title={getDatetime(Number(comment.createdAt))} className='text-muted'>
+    <div className='comment'>
+      <span className='fw-semibold'>
+        {comment.authorId}  {/* TODO authorUsername*/}
+      </span>
+      <span title={getDatetime(Number(comment.createdAt))} className='text-muted fw-light'>
         {' - '}
         {getDate(Number(comment.createdAt))}
       </span>
-      <div className='comment'>
+      <div>
         <Row className='mb-1'>
           <Col> {comment.content} </Col>
         </Row>
-        <Row>
-          <Col>
-            <Badge bg='secondary'>
-              {comment.score}
-              <i className='icon bi-hand-thumbs-up-fill ms-1'></i>
-            </Badge>
-            <NavLink to={`/article/${comment.articleId}`}>
-              <Button size="sm" className='ms-3' variant='secondary'>
-                Article
-                <i className='icon bi-chevron-double-right ms-1'></i>
-              </Button>
-            </NavLink>
-          </Col>
-        </Row>
 
+        <Badge bg='secondary'>
+          {comment.score}
+          <i className='icon bi-hand-thumbs-up-fill ms-1'></i>
+        </Badge>
+
+        <GoToArticleButton />
         <ChildComments/>
       </div>
     </div>

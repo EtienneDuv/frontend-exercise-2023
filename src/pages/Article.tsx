@@ -50,7 +50,7 @@ export const Article = () => {
           <NavLink to={`/profile/${article?.authorId}`}>
             <Badge bg='secondary'> {article?.authorUsername} </Badge>
           </NavLink>
-          <span title={getDatetime(Number(article?.createdAt))} className='text-muted'>
+          <span title={getDatetime(Number(article?.createdAt))} className='text-muted fw-light'>
             {' - '}
             {getDate(Number(article?.createdAt))}
           </span>
@@ -70,7 +70,7 @@ export const Article = () => {
           {article?.comments.map((el, i) => {
             const comment = el as Comment;
             return (
-              <div className='mt-3' key={i}>
+              <div className='mt-4' key={i}>
                 <CommentCard comment={comment} key={i} />
               </div>
             );

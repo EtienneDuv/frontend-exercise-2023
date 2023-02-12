@@ -1,20 +1,19 @@
 import {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useQuery, UseQueryOptions} from 'react-query';
-import {Row, Spinner, Col} from 'react-bootstrap';
+import {Row, Spinner, Col, Button} from 'react-bootstrap';
 import {gql} from '../services';
-import {User as UserType, Article, Comment} from '../@types/gql';
-import {ErrorAlerts, ArticleCard, CommentCard} from '../components';
-import {getDate, getDatetime} from '../services/utils';
+import {User as UserType, Article} from '../@types/gql';
+import {ErrorAlerts, ArticleCard} from '../components';
+import {getDate, getDatetime, getCookie} from '../services/utils';
 
-export const Profile = () => {
-  const {id} = useParams();
+export const OwnProfile = () => {
   const [user, setUser] = useState<UserType>();
   const [errors, setErrors] = useState<object[]>([]);
 
   const {isFetching} = useQuery({
-    queryKey : 'user',
-    queryFn  : () => gql.getUser({userId: id||''}),
+    queryKey : 'me',
+    queryFn  : () => gql.getUser({userId: getCookie('userId')||''}),
     onSuccess: ({data, errors}) => {
       if (errors) {
         setErrors(errors);
@@ -52,22 +51,23 @@ export const Profile = () => {
       </Row>
 
       <Row>
-        <Col xs={12} md={7}>
-          <div className='my-3 fs-4 text-center'> Owned articles </div>
+        <Col>
+          <NavLink to={'/@me/edit'}>
+            <Button size="sm" variant='secondary'>
+              Edit personal information
+              <i className='icon bi-pen ms-1'></i>
+            </Button>
+          </NavLink>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <div className='mt-5 mb-3 fs-4'> Owned articles </div>
+
           {user?.articles.map((el, i) => {
             const article = el as Article;
-            return <ArticleCard article={article} key={i} readable />;
-          })}
-        </Col>
-        <Col>
-          <div className='my-3 fs-4 text-center'> Owned comments </div>
-          {user?.comments.map((el, i) => {
-            const comment = el as Comment;
-            return (
-              <div className='mt-3' key={i}>
-                <CommentCard comment={comment} key={i} />
-              </div>
-            );
+            return <ArticleCard article={article} key={i} editable readable />;
           })}
         </Col>
       </Row>
