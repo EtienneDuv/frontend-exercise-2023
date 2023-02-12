@@ -24,7 +24,7 @@ export const ArticleCard = ({article}: Args) => {
     <Card className='mb-3'>
       <Card.Header as="h4">
         <Card.Title> {article.title} </Card.Title>
-        <Card.Subtitle>
+        <Card.Subtitle className='mt-2'>
           <AuthorSubtitle />
           <span title={getDatetime(Number(article.createdAt))}>
             {getDate(Number(article.createdAt))}

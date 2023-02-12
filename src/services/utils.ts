@@ -2,7 +2,9 @@ export const fetchGql = ({body=''}): Promise<unknown> => {
   const headers: any = {
     'Content-Type': 'application/json',
   };
-  if (getJwt()) headers['Authorization'] = 'Bearer '+getJwt();
+  if (getCookie('jwt')) {
+    headers['Authorization'] = 'Bearer '+getCookie('jwt');
+  }
 
   return fetch('http://localhost:3000/', <RequestInit>{
     method: 'POST',
@@ -12,10 +14,10 @@ export const fetchGql = ({body=''}): Promise<unknown> => {
     .then((res) => res.json());
 };
 
-export const getJwt = () => {
+export const getCookie = (name: string) => {
   return document.cookie
     .split('; ')
-    .find((row) => row.startsWith('jwt='))
+    .find((row) => row.startsWith(name+'='))
     ?.split('=')[1];
 };
 

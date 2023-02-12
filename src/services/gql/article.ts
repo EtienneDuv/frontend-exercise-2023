@@ -28,14 +28,20 @@ export const getArticle = (data: QueryGetArticleArgs) => fetchGql({
       authorUsername
       commentCount
       comments (topLevelOnly: true) {
+        authorId
         content
         score
+        createdAt
         children {
-          content
+        authorId
+        content
           score
+          createdAt
           children {
+            authorId
             content
             score
+            createdAt
           }
         }
       }

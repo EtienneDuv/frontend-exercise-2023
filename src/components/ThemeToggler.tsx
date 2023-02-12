@@ -18,7 +18,7 @@ export const ThemeToggler = () => {
   useEffect(() => localStorage.setItem('theme', theme), [theme]);
 
   return (
-    <Button onClick={toggleTheme} className="me-1">
+    <Button onClick={toggleTheme}>
       <i className={[
         'icon',
         'large',

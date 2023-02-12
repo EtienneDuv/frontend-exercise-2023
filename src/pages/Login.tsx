@@ -3,7 +3,7 @@ import {Button, Form, Row, Col, Container} from 'react-bootstrap';
 import {useMutation, UseMutationOptions} from 'react-query';
 import {useNavigate, Navigate} from 'react-router-dom';
 import {gql} from '../services';
-import {getJwt} from '../services/utils';
+import {getCookie} from '../services/utils';
 import {SetJwtStateProps} from '../@types/interfaces';
 import {ErrorAlerts} from '../components';
 
@@ -13,7 +13,7 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
   const [errors, setErrors] = useState<object[]>([]);
   const navigate = useNavigate();
 
-  if (getJwt()) return <Navigate to="/" />;
+  if (getCookie('jwt')) return <Navigate to="/" />;
 
   const loginMutation = useMutation({
     mutationKey: 'login',
@@ -24,8 +24,10 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
       }
       if (data?.login?.token) {
         const jwt = data.login.token;
+        const userId = data.login.userId;
         if (jwt) {
           document.cookie = `jwt=${jwt};max-age=3600;SameSite=None;secure`;
+          document.cookie = `userId=${userId};max-age=3600;SameSite=None;secure`;
           setJwtState(jwt);
           return navigate('/');
         }

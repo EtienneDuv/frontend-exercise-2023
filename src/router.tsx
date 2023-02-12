@@ -1,11 +1,11 @@
 import {MyNavbar} from './components';
 import Container from 'react-bootstrap/Container';
 import {Routes, Route} from 'react-router-dom';
-import {Home, About, Login, NotFound, Article, Profile} from './pages';
+import {Home, About, Login, NotFound, Article, Profile, OwnProfile} from './pages';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
 import {createContext, useState} from 'react';
-import {getJwt} from './services/utils';
+import {getCookie} from './services/utils';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
 export const JwtContext = createContext<string|null>(null);
 
 export const Router = () => {
-  const [jwtState, setJwtState] = useState<string|null>(getJwt()||null);
+  const [jwtState, setJwtState] = useState<string|null>(getCookie('jwt')||null);
 
   return (
     <Container className='p-5 w-75'>
@@ -32,6 +32,7 @@ export const Router = () => {
             <Route path="/login" element={<Login setJwtState={setJwtState}/>} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/article/:id" element={<Article />} />
+            <Route path="/@me" element={<OwnProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </JwtContext.Provider>

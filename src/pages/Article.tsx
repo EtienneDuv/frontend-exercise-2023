@@ -2,9 +2,11 @@ import {useState} from 'react';
 import {useParams, NavLink} from 'react-router-dom';
 import {useQuery, UseQueryOptions} from 'react-query';
 import {Row, Spinner, Col, Badge} from 'react-bootstrap';
+import ReactMarkdown from 'react-markdown';
+
 import {gql} from '../services';
-import {Article as ArticleType} from '../@types/gql';
-import {ErrorAlerts} from '../components';
+import {Article as ArticleType, Comment} from '../@types/gql';
+import {ErrorAlerts, CommentCard} from '../components';
 import {getDate, getDatetime} from '../services/utils';
 
 export const Article = () => {
@@ -48,7 +50,8 @@ export const Article = () => {
           <NavLink to={`/profile/${article?.authorId}`}>
             <Badge bg='secondary'> {article?.authorUsername} </Badge>
           </NavLink>
-          {' - '} <span title={getDatetime(Number(article?.createdAt))}>
+          <span title={getDatetime(Number(article?.createdAt))} className='text-muted'>
+            {' - '}
             {getDate(Number(article?.createdAt))}
           </span>
         </Col>
@@ -56,7 +59,22 @@ export const Article = () => {
 
       <Row>
         <Col className='fs-5'>
-          {article?.content}
+          <ReactMarkdown>
+            {article?.content||''}
+          </ReactMarkdown>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col className='fs-5'>
+          {article?.comments.map((el, i) => {
+            const comment = el as Comment;
+            return (
+              <div className='mt-3' key={i}>
+                <CommentCard comment={comment} key={i} />
+              </div>
+            );
+          })}
         </Col>
       </Row>
     </div>

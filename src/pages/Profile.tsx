@@ -52,7 +52,7 @@ export const Profile = () => {
       </Row>
 
       <Row>
-        <Col xs={12} md={8}>
+        <Col xs={12} md={7}>
           <div className='my-3 fs-4 text-center'> Owned articles </div>
           {user?.articles.map((el, i) => {
             const article = el as Article;

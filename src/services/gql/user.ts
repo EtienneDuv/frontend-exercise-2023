@@ -6,7 +6,10 @@ export const login = (data: MutationLoginArgs) => fetchGql({
     login (
         username: "${data.username}"
         password: "${data.password}"
-    ) { token }
+    ) { 
+    token
+    userId
+    }
   }`
 });
 

@@ -1,18 +1,26 @@
-import {
-  Navbar,
-  Nav,
-  Button,
-} from 'react-bootstrap';
+import {Navbar, Nav, Button} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import {applifting} from '../assets';
 import {ThemeToggler} from './ThemeToggler';
 import {SetJwtStateProps} from '../@types/interfaces';
 import {JwtContext} from '../router';
+import {getCookie} from '../services/utils';
 
 export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
   const removeJwtCookie = () => {
     setJwtState(null);
     document.cookie='jwt=;expires=0;SameSite=None;secure';
+  };
+
+  const OwnProfileButton = ():JSX.Element => {
+    if (getCookie('jwt'))
+      return (
+        <NavLink to='/@me'>
+          <Button className='icon bi-person'>
+          </Button>
+        </NavLink>
+      );
+    else return <></>;
   };
 
   const LoginLogoutButton = ():JSX.Element => <JwtContext.Consumer>
@@ -50,8 +58,12 @@ export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
         <NavLink to="/about" className='nav-link'> About </NavLink>
       </Nav>
 
-      <ThemeToggler />
-
+      <div className="me-1">
+        <ThemeToggler />
+      </div>
+      <div className="me-1">
+        <OwnProfileButton />
+      </div>
       <LoginLogoutButton />
     </Navbar>
   );
