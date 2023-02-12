@@ -1,11 +1,13 @@
-export const fetchGql = ({body='', headers={}}): Promise<unknown> => {
+export const fetchGql = ({body=''}): Promise<unknown> => {
+  const headers: any = {
+    'Content-Type': 'application/json',
+  };
+  if (getJwt()) headers['Authorization'] = 'Bearer '+getJwt();
+
   return fetch('http://localhost:3000/', <RequestInit>{
-    method : 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers
-    },
-    body: JSON.stringify({query: body}),
+    method: 'POST',
+    headers,
+    body  : JSON.stringify({query: body}),
   })
     .then((res) => res.json());
 };
@@ -22,10 +24,9 @@ export const randInt = (min=0, max=500) => {
 };
 
 export const getDate = (timestamp: number) => new Date(timestamp)
-  .toISOString()
-  .split('T')[0];
+  .toLocaleString('FR')
+  .split(' ')[0];
 
 export const getDatetime = (timestamp: number) => new Date(timestamp)
-  .toISOString()
-  .replace('T', ' - ')
-  .slice(0, 21);
+  .toLocaleString('FR')
+  .replace(' ', ' - ');

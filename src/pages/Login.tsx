@@ -44,9 +44,7 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
         <ErrorAlerts errors={errors}/>
       </div>
     );
-    return (
-      <div />
-    );
+    return <></>;
   };
 
   return (

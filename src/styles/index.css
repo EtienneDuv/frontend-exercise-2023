@@ -5,6 +5,11 @@
 .light {
   transition: 0.4s;
 }
+.comment {
+  border-left: solid black 3px;
+  margin-left: 20px;
+  padding-left: 12px;
+}
 body {
   overflow-y: scroll; /* Show vertical scrollbar */
 }

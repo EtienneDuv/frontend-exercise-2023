@@ -1,4 +1,4 @@
-import {MutationLoginArgs} from '../../@types/gql';
+import {MutationLoginArgs, QueryGetUserArgs} from '../../@types/gql';
 import {fetchGql} from '../utils';
 
 export const login = (data: MutationLoginArgs) => fetchGql({
@@ -7,5 +7,28 @@ export const login = (data: MutationLoginArgs) => fetchGql({
         username: "${data.username}"
         password: "${data.password}"
     ) { token }
+  }`
+});
+
+export const getUser = (data: QueryGetUserArgs) => fetchGql({
+  body: `query {
+    getUser (userId: "${data.userId}") { 
+      username
+      createdAt
+      articles {
+        id
+        title
+        perex
+        commentCount
+        createdAt
+      }
+      comments {
+        authorId
+        articleId
+        score
+        content
+        createdAt
+      }
+    }
   }`
 });
