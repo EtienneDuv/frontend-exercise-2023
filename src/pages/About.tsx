@@ -1,3 +1,4 @@
+import {useRef} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import {
   apollo, codegen, eslint, express, graphql, jwt, bootstrap,
@@ -6,6 +7,10 @@ import {
 import {TechnoImageTooltip} from '../components';
 
 export const About = () => {
+  const windowSize = useRef([window.innerWidth, window.innerHeight]);
+  const width = windowSize.current[0];
+  const isSmallWidth = width<700;
+
   const frontendTechnos = [
     {
       svg  : react,
@@ -15,7 +20,7 @@ export const About = () => {
     {
       svg  : reactQuery,
       title: 'REACT QUERY',
-      text : 'React Query is a ReactJS preconfigured data management library which gives you power and control over server-side state management, fetching, and caching of data, and error handling in a simple and declarative way without affecting the global state of your application'
+      text : 'React Query is a ReactJS preconfigured data management library which gives you power and control over server-side state management, fetching, and caching of data, and error handling without affecting the global state of your application'
     },
     {
       svg  : bootstrap,
@@ -32,12 +37,12 @@ export const About = () => {
     {
       svg  : eslint,
       title: 'ESLINT',
-      text : 'ESLint is a static code analysis tool for identifying problematic patterns found in JavaScript code. ESLint covers both code quality and coding style issues'
+      text : 'ESLint is a code analysis tool for identifying problems in JS code. ESLint covers both code quality and coding style issues'
     },
     {
       svg  : codegen,
       title: 'CODEGEN',
-      text : 'GraphQL Code Generator is a plugin-based tool that automates the generation of typed Queries, Mutations and Subscriptions for frontend, typed GraphQL resolvers for backend'
+      text : 'GraphQL Code Generator automates the generation of typed Queries, Mutations and Subscriptions for frontend, typed GraphQL resolvers for backend'
     },
   ];
   const backendTechnos = [
@@ -78,7 +83,6 @@ export const About = () => {
       <div className='mb-3 fs-5 text'>
         This app is a training for React using my training graphQL API.
       </div>
-
       <Button
         href='https://github.com/EtienneDuv/test-Applifting'
         target='_blank'
@@ -87,7 +91,6 @@ export const About = () => {
         Backend repo
         <i className='icon bi-github ms-2'></i>
       </Button>
-
       <Button
         href='https://github.com/EtienneDuv/test-Applifting-frontend'
         target='_blank'
@@ -102,7 +105,12 @@ export const About = () => {
           FRONTEND
           {frontendTechnos.map((el, i) => (
             <Row key={i}>
-              <TechnoImageTooltip svg={el.svg} tooltipTitle={el.title} tooltipText={el.text}/>
+              <TechnoImageTooltip
+                svg={el.svg}
+                tooltipTitle={el.title}
+                tooltipText={el.text}
+                placement={isSmallWidth ? 'bottom' : 'right'}
+              />
             </Row>
           ))}
         </Col>
@@ -111,7 +119,12 @@ export const About = () => {
           COMMON
           {commonTechnos.map((el, i) => (
             <Row key={i}>
-              <TechnoImageTooltip svg={el.svg} tooltipTitle={el.title} tooltipText={el.text}/>
+              <TechnoImageTooltip
+                svg={el.svg}
+                tooltipTitle={el.title}
+                tooltipText={el.text}
+                placement={isSmallWidth ? 'bottom' : 'right'}
+              />
             </Row>
           ))}
         </Col>
@@ -124,7 +137,7 @@ export const About = () => {
                 svg={el.svg}
                 tooltipTitle={el.title}
                 tooltipText={el.text}
-                placement='left'
+                placement={isSmallWidth ? 'bottom' : 'left'}
               />
             </Row>
           ))}
