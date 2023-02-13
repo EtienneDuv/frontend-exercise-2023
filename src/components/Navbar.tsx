@@ -23,38 +23,38 @@ export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
     else return <></>;
   };
 
-  const LoginLogoutButton = ():JSX.Element => <JwtContext.Consumer>
-    {jwt => {
-      if (!jwt)
-        return (
-          <NavLink to='/login'>
-            <Button>
+  const LoginLogoutButton = ():JSX.Element => (
+    <JwtContext.Consumer>
+      {jwt => {
+        if (!jwt)
+          return (
+            <NavLink to='/login'>
+              <Button>
               Login
-              <i className='icon bi-person ms-1'></i>
-            </Button>
-          </NavLink>
-        );
-      else
-        return (
-          <Button onClick={() => { removeJwtCookie() } }>
+                <i className='icon bi-person ms-1'></i>
+              </Button>
+            </NavLink>
+          );
+        else
+          return (
+            <Button onClick={() => { removeJwtCookie() } }>
             Logout
-            <i className='icon bi-box-arrow-right ms-1'></i>
-          </Button>
-        );
-    }}
-  </JwtContext.Consumer>;
+              <i className='icon bi-box-arrow-right ms-1'></i>
+            </Button>
+          );
+      }}
+    </JwtContext.Consumer>
+  );
 
   return (
     <Navbar className='mb-3'>
       <NavLink to='/' className="navbar-brand">
         <Navbar.Brand>
           <img alt="Appliting" src={applifting.toString()} width="50" className="me-2" />
-          <span> React Bootstrap </span>
         </Navbar.Brand>
       </NavLink>
 
       <Nav className='me-auto'>
-        <NavLink to="/articles" className='nav-link'> Recent articles </NavLink>
         <NavLink to="/about" className='nav-link'> About </NavLink>
       </Nav>
 

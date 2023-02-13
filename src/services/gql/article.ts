@@ -1,4 +1,8 @@
-import {QueryGetArticlesArgs, QueryGetArticleArgs} from '../../@types/gql';
+import {
+  QueryGetArticlesArgs,
+  QueryGetArticleArgs,
+  MutationUpdateArticleArgs,
+} from '../../@types/gql';
 import {fetchGql} from '../utils';
 
 export const getArticles = (data: QueryGetArticlesArgs) => fetchGql({
@@ -45,6 +49,19 @@ export const getArticle = (data: QueryGetArticleArgs) => fetchGql({
           }
         }
       }
+    }
+  }`
+});
+
+export const updateArticle = (data: MutationUpdateArticleArgs) => fetchGql({
+  body: `mutation {
+    updateArticle (
+        articleId: "${data.articleId}"
+        title    : "${data.title}"
+        perex    : """${data.perex}"""
+        content  : """${data.content}"""
+    ) { 
+      updatedAt
     }
   }`
 });

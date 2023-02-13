@@ -10,6 +10,11 @@
   margin-left: 15px;
   padding-left: 15px;
 }
+.popup {
+  width:70%;
+  transform: translate(15%, -120%);
+  text-align: center;
+}
 body {
   overflow-y: scroll; /* Show vertical scrollbar */
 }

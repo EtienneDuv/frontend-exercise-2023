@@ -1,3 +1,4 @@
+export {AlertPopup} from './AlertPopup';
 export {ArticleCard} from './ArticleCard';
 export {CommentCard} from './CommentCard';
 export {ErrorAlerts} from './ErrorAlerts';

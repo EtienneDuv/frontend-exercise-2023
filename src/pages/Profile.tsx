@@ -65,7 +65,7 @@ export const Profile = () => {
             const comment = el as Comment;
             return (
               <div className='mt-3' key={i}>
-                <CommentCard comment={comment} key={i} />
+                <CommentCard comment={comment} key={i} articleButton />
               </div>
             );
           })}
