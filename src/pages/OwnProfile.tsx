@@ -58,6 +58,12 @@ export const OwnProfile = () => {
               <i className='icon bi-pen ms-1'></i>
             </Button>
           </NavLink>
+          <NavLink to={'/article/new'} className='ms-3'>
+            <Button size="sm" variant='secondary'>
+              New article
+              <i className='icon bi-plus-lg ms-1'></i>
+            </Button>
+          </NavLink>
         </Col>
       </Row>
 

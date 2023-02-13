@@ -2,6 +2,7 @@ import {
   QueryGetArticlesArgs,
   QueryGetArticleArgs,
   MutationUpdateArticleArgs,
+  MutationCreateArticleArgs
 } from '../../@types/gql';
 import {fetchGql} from '../utils';
 
@@ -62,6 +63,18 @@ export const updateArticle = (data: MutationUpdateArticleArgs) => fetchGql({
         content  : """${data.content}"""
     ) { 
       updatedAt
+    }
+  }`
+});
+
+export const createArticle = (data: MutationCreateArticleArgs) => fetchGql({
+  body: `mutation {
+    createArticle (
+        title    : "${data.title}"
+        perex    : """${data.perex}"""
+        content  : """${data.content}"""
+    ) { 
+      id
     }
   }`
 });

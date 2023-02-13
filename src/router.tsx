@@ -9,7 +9,7 @@ import {getCookie} from './services/utils';
 import {
   Home, About, Login, NotFound,
   Article, Profile, OwnProfile, OwnProfileEdit,
-  ArticleEdit
+  ArticleEdit, ArticleNew
 } from './pages';
 
 const queryClient = new QueryClient({
@@ -46,6 +46,7 @@ export const Router = () => {
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/article/:id" element={<Article />} />
             <Route path="/article/:id/edit" element={<ArticleEdit />} />
+            <Route path="/article/new" element={<ArticleNew />} />
             <Route path="/@me" element={<OwnProfile />} />
             <Route path="/@me/edit" element={<OwnProfileEdit />} />
             <Route path="*" element={<NotFound />} />

@@ -1,6 +1,7 @@
 export {About} from './About';
 export {Article} from './Article';
 export {ArticleEdit} from './ArticleEdit';
+export {ArticleNew} from './ArticleNew';
 export {Home} from './Home';
 export {Login} from './Login';
 export {NotFound} from './404';
