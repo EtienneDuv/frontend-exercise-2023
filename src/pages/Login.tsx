@@ -33,6 +33,7 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
           setTimeout(() => {
             setJwtState(null);
             document.cookie='jwt=;expires=0;SameSite=None;secure';
+            navigate('/disconnected');
           }, 60*60*1000);
           return navigate('/');
         }

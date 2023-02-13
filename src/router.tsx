@@ -9,7 +9,7 @@ import {getCookie} from './services/utils';
 import {
   Home, About, Login, NotFound,
   Article, Profile, OwnProfile, OwnProfileEdit,
-  ArticleEdit, ArticleNew
+  ArticleEdit, ArticleNew, Disconnected
 } from './pages';
 
 const queryClient = new QueryClient({
@@ -49,6 +49,7 @@ export const Router = () => {
             <Route path="/article/new" element={<ArticleNew />} />
             <Route path="/@me" element={<OwnProfile />} />
             <Route path="/@me/edit" element={<OwnProfileEdit />} />
+            <Route path="/disconnected" element={<Disconnected />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </JwtContext.Provider>

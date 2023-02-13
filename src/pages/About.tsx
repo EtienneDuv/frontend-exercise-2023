@@ -109,7 +109,7 @@ export const About = () => {
                 svg={el.svg}
                 tooltipTitle={el.title}
                 tooltipText={el.text}
-                placement={isSmallWidth ? 'bottom' : 'right'}
+                placement={isSmallWidth ? 'top' : 'right'}
               />
             </Row>
           ))}
@@ -123,7 +123,7 @@ export const About = () => {
                 svg={el.svg}
                 tooltipTitle={el.title}
                 tooltipText={el.text}
-                placement={isSmallWidth ? 'bottom' : 'right'}
+                placement={isSmallWidth ? 'top' : 'right'}
               />
             </Row>
           ))}
@@ -137,7 +137,7 @@ export const About = () => {
                 svg={el.svg}
                 tooltipTitle={el.title}
                 tooltipText={el.text}
-                placement={isSmallWidth ? 'bottom' : 'left'}
+                placement={isSmallWidth ? 'top' : 'left'}
               />
             </Row>
           ))}
