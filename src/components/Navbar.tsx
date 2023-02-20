@@ -9,7 +9,7 @@ import {getCookie} from '../services/utils';
 export const MyNavbar = ({setJwtState}: SetJwtStateProps) => {
   const removeJwtCookie = () => {
     setJwtState(null);
-    document.cookie='jwt=;expires=0;SameSite=None;secure';
+    document.cookie='jwt=;expires=0';
   };
 
   const OwnProfileButton = ():JSX.Element => {

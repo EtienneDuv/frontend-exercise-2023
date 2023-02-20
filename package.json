@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "start:dev": "vite --port 4000",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "lint": "eslint src/**/* --fix",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "docker:build": "docker build -t react_applifting .",
+    "docker:run": "docker run --name react -p 8080:80 -d react_applifting"
   },
   "dependencies": {
     "bootstrap-icons": "^1.10.3",

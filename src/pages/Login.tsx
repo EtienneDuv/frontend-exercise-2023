@@ -26,13 +26,13 @@ export const Login = ({setJwtState}: SetJwtStateProps) => {
         const jwt = data.login.token;
         const userId = data.login.userId;
         if (jwt) {
-          document.cookie = `jwt=${jwt};max-age=3600;SameSite=None;secure`;
-          document.cookie = `userId=${userId};max-age=3600;SameSite=None;secure`;
+          document.cookie = `jwt=${jwt};max-age=3600`;
+          document.cookie = `userId=${userId};max-age=3600`;
           setJwtState(jwt);
           // Log out in 1 hour
           setTimeout(() => {
             setJwtState(null);
-            document.cookie='jwt=;expires=0;SameSite=None;secure';
+            document.cookie='jwt=;expires=0';
             navigate('/disconnected');
           }, 60*60*1000);
           return navigate('/');

@@ -14,4 +14,12 @@
 **Run frontend**
 `npm run start:dev`
 
-# Build for deployment
+# Run built app
+
+**Build docker**
+`npm run docker:build`
+
+**Run docker**
+`npm run docker:run`
+
+**Access at localhost:8080**
