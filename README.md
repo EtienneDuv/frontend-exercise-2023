@@ -10,9 +10,7 @@
 - query backend
   - ✔ login
   - ✔ store token
-  - About page + icons
-  - Profile page
-  - Article page
-  - add articleCount in gql for pagination
-- complete react interface
+  - ✔ About page + icons
+  - ✔ Profile page + edit
+  - ✔ Article page + edit
 - Cypress

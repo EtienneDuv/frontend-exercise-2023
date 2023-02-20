@@ -40,6 +40,7 @@ export type Comment = {
   __typename?: 'Comment';
   articleId: Scalars['ID'];
   authorId: Scalars['ID'];
+  authorUsername: Scalars['String'];
   children: Array<Comment>;
   content: Scalars['String'];
   createdAt: Scalars['String'];
@@ -50,6 +51,7 @@ export type Comment = {
 export type Jwt = {
   __typename?: 'Jwt';
   token: Scalars['String'];
+  userId: Scalars['ID'];
 };
 
 export type Mutation = {
@@ -283,6 +285,7 @@ export type ArticleResolvers<ContextType = any, ParentType extends ResolversPare
 export type CommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Comment'] = ResolversParentTypes['Comment']> = {
   articleId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  authorUsername?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   children?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -293,6 +296,7 @@ export type CommentResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type JwtResolvers<ContextType = any, ParentType extends ResolversParentTypes['Jwt'] = ResolversParentTypes['Jwt']> = {
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

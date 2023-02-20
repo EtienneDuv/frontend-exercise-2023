@@ -2,7 +2,8 @@ import {
   QueryGetArticlesArgs,
   QueryGetArticleArgs,
   MutationUpdateArticleArgs,
-  MutationCreateArticleArgs
+  MutationCreateArticleArgs,
+  MutationDeleteArticleArgs,
 } from '../../@types/gql';
 import {fetchGql} from '../utils';
 
@@ -34,16 +35,19 @@ export const getArticle = (data: QueryGetArticleArgs) => fetchGql({
       commentCount
       comments (topLevelOnly: true) {
         authorId
+        authorUsername
         content
         score
         createdAt
         children {
         authorId
+        authorUsername
         content
           score
           createdAt
           children {
             authorId
+            authorUsername
             content
             score
             createdAt
@@ -76,5 +80,13 @@ export const createArticle = (data: MutationCreateArticleArgs) => fetchGql({
     ) { 
       id
     }
+  }`
+});
+
+export const deleteArticle = (data: MutationDeleteArticleArgs) => fetchGql({
+  body: `mutation {
+    deleteArticle (
+        articleId    : "${data.articleId}"
+    )
   }`
 });

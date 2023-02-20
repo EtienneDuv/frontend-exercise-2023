@@ -23,7 +23,6 @@ const queryClient = new QueryClient({
 
 export const JwtContext = createContext<string|null>(null);
 
-
 export const Router = () => {
   const [jwtState, setJwtState] = useState<string|null>(getCookie('jwt')||null);
 

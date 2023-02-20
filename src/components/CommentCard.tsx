@@ -45,7 +45,7 @@ export const CommentCard = ({comment, articleButton}: Args) => {
   return (
     <div className='comment'>
       <span className='fw-semibold'>
-        {comment.authorId}  {/* TODO authorUsername*/}
+        {comment.authorUsername}
       </span>
       <span title={getDatetime(Number(comment.createdAt))} className='text-muted fw-light'>
         {' - '}

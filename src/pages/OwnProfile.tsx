@@ -1,17 +1,18 @@
 import {useState} from 'react';
 import {NavLink} from 'react-router-dom';
-import {useQuery, UseQueryOptions} from 'react-query';
-import {Row, Spinner, Col, Button} from 'react-bootstrap';
+import {useQuery, UseQueryOptions, useMutation, UseMutationOptions} from 'react-query';
+import {Row, Spinner, Col, Button, Table} from 'react-bootstrap';
 import {gql} from '../services';
-import {User as UserType, Article} from '../@types/gql';
-import {ErrorAlerts, ArticleCard} from '../components';
+import {User as UserType, Article, MutationDeleteArticleArgs} from '../@types/gql';
+import {ErrorAlerts, AlertPopup} from '../components';
 import {getDate, getDatetime, getCookie} from '../services/utils';
 
 export const OwnProfile = () => {
   const [user, setUser] = useState<UserType>();
   const [errors, setErrors] = useState<object[]>([]);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
 
-  const {isFetching} = useQuery({
+  const {isFetching, refetch: refetchData} = useQuery({
     queryKey : 'me',
     queryFn  : () => gql.getUser({userId: getCookie('userId')||''}),
     onSuccess: ({data, errors}) => {
@@ -23,6 +24,16 @@ export const OwnProfile = () => {
       }
     },
   } as UseQueryOptions);
+
+  const deleteArticleMutation = useMutation({
+    mutationKey: 'deleteArticle',
+    mutationFn : (data: MutationDeleteArticleArgs) => gql.deleteArticle({articleId: data.articleId}),
+    onSuccess  : () => {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+      refetchData();
+    }
+  } as unknown as UseMutationOptions);
 
   if (isFetching) return (
     <Row>
@@ -38,6 +49,8 @@ export const OwnProfile = () => {
 
   return (
     <div>
+      <AlertPopup defaultShow={showAlert} variant='success' message='Article removed' />
+
       <Row className='fs-1 mb-1'>
         <Col>
           {user?.username}
@@ -58,7 +71,7 @@ export const OwnProfile = () => {
               <i className='icon bi-pen ms-1'></i>
             </Button>
           </NavLink>
-          <NavLink to={'/article/new'} className='ms-3'>
+          <NavLink to={'/article/new'} className='ms-1'>
             <Button size="sm" variant='secondary'>
               New article
               <i className='icon bi-plus-lg ms-1'></i>
@@ -67,16 +80,43 @@ export const OwnProfile = () => {
         </Col>
       </Row>
 
-      <Row>
-        <Col>
-          <div className='mt-5 mb-3 fs-4'> Owned articles </div>
-
+      <Table striped bordered hover className='mt-3'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Comment count</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
           {user?.articles.map((el, i) => {
             const article = el as Article;
-            return <ArticleCard article={article} key={i} editable readable />;
+            return (
+              <tr key={i}>
+                <td> {article.title} </td>
+                <td> {article.commentCount} </td>
+                <td>
+                  <NavLink to={`/article/${article.id}/edit`}>
+                    <Button size="sm" variant='secondary'>
+                      <i className='icon bi-pen'></i>
+                    </Button>
+                  </NavLink>
+                  <Button
+                    size="sm"
+                    variant='secondary'
+                    className='ms-1'
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    onClick={() => deleteArticleMutation.mutate({articleId: article.id})}
+                  >
+                    <i className='icon bi-trash'></i>
+                  </Button>
+                </td>
+              </tr>
+            );
           })}
-        </Col>
-      </Row>
+        </tbody>
+      </Table>
     </div>
   );
 };
