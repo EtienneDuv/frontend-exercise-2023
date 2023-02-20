@@ -31,7 +31,7 @@ export const ArticleNew = () => {
     sessionStorage.setItem('newArticleTitle', title);
     sessionStorage.setItem('newArticlePerex', perex);
     sessionStorage.setItem('newArticleContent', content);
-  }
+  };
   const sessionTitle = sessionStorage.getItem('newArticleTitle');
   const sessionPerex = sessionStorage.getItem('newArticlePerex');
   const sessionContent = sessionStorage.getItem('newArticleContent');
@@ -53,9 +53,9 @@ export const ArticleNew = () => {
       if (data?.createArticle?.id) {
         setShowAlert(true);
         setTimeout(() => setShowAlert(false), 3000);
-    sessionStorage.removeItem('newArticleTitle');
-    sessionStorage.removeItem('newArticlePerex');
-    sessionStorage.removeItem('newArticleContent');
+        sessionStorage.removeItem('newArticleTitle');
+        sessionStorage.removeItem('newArticlePerex');
+        sessionStorage.removeItem('newArticleContent');
         return navigate(`/article/${data.createArticle.id}/edit`);
       }
     }
@@ -91,24 +91,27 @@ export const ArticleNew = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control
+            id='articleTitle'
             placeholder='Article title'
             value={title}
             className='mb-2'
-            onChange={(event) => {setTitle(event?.target.value); updateSessionData();}}
+            onChange={(event) => {setTitle(event?.target.value); updateSessionData()}}
           />
           <Form.Control
+            id='articlePerex'
             placeholder='Here is the short text people will see in the article list'
             value={perex}
             as="textarea"
             rows={4}
             className='mb-2'
-            onChange={(event) => {setPerex(event?.target.value); updateSessionData();}}
+            onChange={(event) => {setPerex(event?.target.value); updateSessionData()}}
           />
         </Form.Group>
 
         <MarkdownEditor
+          id='articleContent'
           value={content}
-          onChange={(event) => {setContent(event||''); updateSessionData();}}
+          onChange={(event) => {setContent(event||''); updateSessionData()}}
           data-color-mode="light"
           height={600}
         />

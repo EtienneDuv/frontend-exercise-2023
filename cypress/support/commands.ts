@@ -1,20 +1,21 @@
 /// <reference types="cypress" />
 
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-
 Cypress.Commands.add('clickLink', (href: string|RegExp, label: string|RegExp) => {
-  return cy.get(`a[href*="${href}"]`)
-  // .should('have.attr', 'href', '/users')
+  cy.get(`a[href*="${href}"]`)
     .contains(label)
     .click();
+});
+
+Cypress.Commands.add('login', () => {
+  cy.visit('localhost:4000/');
+  cy.clickLink('login', 'Login');
+  cy.fixture('login').then(loginData => {
+    cy.get('input#formUsername').type(loginData.username);
+    cy.get('input#formPassword').type(loginData.password);
+    cy.get('button').contains('Sign in').click();
+    cy.wait(1000);
+  });
+  return;
 });
 
 declare global {
@@ -22,6 +23,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       clickLink(href:string|RegExp, value: string|RegExp): Chainable<JQuery<HTMLElement>>
+      login(): Chainable<JQuery<HTMLElement>>
     }
   }
 }
