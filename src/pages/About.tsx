@@ -2,7 +2,7 @@ import {useRef} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
 import {
   apollo, codegen, eslint, express, graphql, jwt, bootstrap,
-  postgresql, react, reactQuery, sequelize, typescript,
+  postgresql, react, reactQuery, sequelize, typescript, vite
 } from '../assets';
 import {TechnoImageTooltip} from '../components';
 
@@ -21,6 +21,11 @@ export const About = () => {
       svg  : reactQuery,
       title: 'REACT QUERY',
       text : 'React Query is a ReactJS preconfigured data management library which gives you power and control over server-side state management, fetching, and caching of data, and error handling without affecting the global state of your application'
+    },
+    {
+      svg  : vite,
+      title: 'VITE',
+      text : 'Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects'
     },
     {
       svg  : bootstrap,

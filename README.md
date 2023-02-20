@@ -1,16 +1,17 @@
 # Applifting Blog Engine frontend exercise 
 
 - [Figma](https://www.figma.com/file/VagZOrr3TjTAxGCpCUTSrO/Applifting-|-Full-Stack-Cvičení)
-- [GraphQL API](https://github.com/EtienneDuv/test-Applifting)
+- [Backend](https://github.com/EtienneDuv/test-Applifting)
+- [Frontend](https://github.com/EtienneDuv/test-Applifting-frontend)
 
-# TODO
-- ✔ setup react
-- ✔ basic interface
-- ✔ get codegen types from API
-- query backend
-  - ✔ login
-  - ✔ store token
-  - ✔ About page + icons
-  - ✔ Profile page + edit
-  - ✔ Article page + edit
-- Cypress
+# Run the frontend
+
+**Install dependencies**
+`npm i`
+
+**Run backend** (if you want data), check how to do it [here](https://github.com/EtienneDuv/test-Applifting#dev-environment)
+
+**Run frontend**
+`npm run start:dev`
+
+# Build for deployment

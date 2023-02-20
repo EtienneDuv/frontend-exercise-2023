@@ -12,3 +12,4 @@ export {default as react} from './react.svg';
 export {default as reactQuery} from './reactQuery.svg';
 export {default as sequelize} from './sequelize.svg';
 export {default as typescript} from './typescript.svg';
+export {default as vite} from './vite.svg';
