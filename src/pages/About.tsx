@@ -89,7 +89,7 @@ export const About = () => {
         This app is a training for React using my training graphQL API.
       </div>
       <Button
-        href='https://github.com/EtienneDuv/test-Applifting'
+        href='https://github.com/EtienneDuv/backend-exercise-2023'
         target='_blank'
         className='mb-5 me-3'
       >
@@ -97,7 +97,7 @@ export const About = () => {
         <i className='icon bi-github ms-2'></i>
       </Button>
       <Button
-        href='https://github.com/EtienneDuv/test-Applifting-frontend'
+        href='https://github.com/EtienneDuv/frontend-exercise-2023'
         target='_blank'
         className='mb-5'
       >

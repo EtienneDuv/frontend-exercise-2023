@@ -1,6 +1,6 @@
 import type {CodegenConfig} from '@graphql-codegen/cli';
 
-// Run https://github.com/EtienneDuv/test-Applifting API
+// Run https://github.com/EtienneDuv/backend-exercise-2023 API
 const config: CodegenConfig = {
   overwrite: true,
   schema   : 'http://localhost:3000',
